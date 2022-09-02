@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <input type="fecha_nacimiento" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}">
+                                        <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
