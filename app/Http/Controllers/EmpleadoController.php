@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Empleado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
 
 class EmpleadoController extends Controller
 {
@@ -42,6 +44,33 @@ class EmpleadoController extends Controller
     {
         //dd($request->all());
 
+        $this->validate($request,[
+            'nombre' => 'required|max:10',
+            'apellido_paterno' => 'required',
+            'apellido_materno' => 'required',
+            'correo' => 'required|email', //Formato correo
+            'fecha-nacimiento' => '',//Solo acepte formato fecha
+            'direccion' => '',
+            'genero' => 'required', //Solo acepte masculino/femenino
+            'telefono' => 'required',
+            'codigo_empleado' => 'required' //Unico
+        ]);
+
+        /*$validaciones = Validator::make($request->all(), [
+                'nombre' => 'required|max:10',
+                'apellido_paterno' => 'required',
+                'apellido_materno' => 'required',
+                'correo' => 'required',
+                'fecha-nacimiento' => '',
+                'direccion' => '',
+                'genero' => 'required',
+                'telefono' => 'required',
+                'codigo_empleado' => 'required'
+            ]
+        );
+
+        dd($request->all(),$validaciones, $validaciones->errors());*/
+
         $arraySave = [
             'nombre' => $request->get("nombre"),
             'apellido_paterno' => $request->get("apellido_paterno"),
@@ -59,7 +88,6 @@ class EmpleadoController extends Controller
         return redirect()->route('empleado.index')->with('success','Registro creado exitosamente.');
 
         //dd($saveEmpleado);
-
     }
 
     /**
@@ -102,8 +130,9 @@ class EmpleadoController extends Controller
      * @param  \App\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleado $empleado)
+    public function destroy($idEmpleado)
     {
-        //
+        Empleado::find($idEmpleado)->delete();
+        return redirect()->route('empleado.index')->with('success' , 'Registro eliminado existosamente.');
     }
 }

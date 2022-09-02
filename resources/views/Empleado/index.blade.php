@@ -39,7 +39,13 @@
                                         <td>{{ $empleado->nombre }}</td>
                                         <td>{{ $empleado->apellido_paterno . " " . $empleado->apellido_materno }}</td>
                                         <td>{{ $empleado->correo }}</td>
-                                        <td></td>
+                                        <td>
+                                            <form action="{{route('empleado.destroy', $empleado->id)}}" method="post">
+                                                {{csrf_field()}}
+                                                <input name="_method" type="hidden" value="delete">
+                                                <button class="button btn-danger" type="submit">Eliminar</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 @else
