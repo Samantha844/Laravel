@@ -21,3 +21,5 @@ Route::get('/home/visitante', 'HomeController@index')->name('home');
 
 Route::get('/empleado/index', 'EmpleadoController@index')->name('empleado.index');
 
+Route::get('/empleado/create', 'EmpleadoController@create')->name('empleado.create');
+Route::post('/empleado/store', 'EmpleadoController@store')->name('empleado.store');

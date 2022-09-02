@@ -13,7 +13,7 @@ class Empleado extends Model
         'apellido_paterno',
         'apellido_materno',
         'correo',
-        'fecha_nacimiento',
+        'fecha-nacimiento',
         'direccion',
         'genero',
         'telefono',

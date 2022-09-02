@@ -29,7 +29,7 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('Empleado.create');
     }
 
     /**
@@ -40,7 +40,26 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $arraySave = [
+            'nombre' => $request->get("nombre"),
+            'apellido_paterno' => $request->get("apellido_paterno"),
+            'apellido_materno' => $request->get("apellido_materno"),
+            'correo' => $request->get("correo"),
+            'fecha-nacimiento' => $request->get("fecha_nacimiento"),
+            'direccion' => $request->get("direccion"),
+            'genero' => $request->get("genero"),
+            'telefono' => $request->get("telefono"),
+            'codigo_empleado' => $request->get("codigo_empleado")
+        ];
+
+        $saveEmpleado = Empleado::create($arraySave);
+
+        return redirect()->route('empleado.index')->with('success','Registro creado exitosamente.');
+
+        //dd($saveEmpleado);
+
     }
 
     /**
