@@ -18,6 +18,13 @@
 
     <!-- CDN Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type='text/javascript'>
+        var _CSRF_TOKEN = '{{ csrf_token() }}';
+    </script>
+
+    <!--Scrips -->
+    <script type='text/javascript' src="{{ asset('js/functions.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -47,10 +54,24 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                <i class="fa fa-language"></i>&nbsp;&nbsp;{{trans('app.menu.language_current')}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach(trans('app.menu.languages') as $index => $langMenu)
+                                    <li>
+                                        <a id="lang_{{$index}}" data-locale_id="{{$index}}" class="change_lang_menu" type="button" style="cursor: pointer;">{{$langMenu}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">{{trans('app.menu.login')}}</a></li>
+                            <li><a href="{{ route('register') }}">{{trans('app.menu.register')}}</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -62,7 +83,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            {{trans('app.menu.logout')}}
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -77,10 +98,13 @@
             </div>
         </nav>
 
+
+
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home/visitante', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/empleado/index', 'EmpleadoController@index')->name('empleado.index');
 
@@ -25,3 +25,8 @@ Route::get('/empleado/create', 'EmpleadoController@create')->name('empleado.crea
 Route::post('/empleado/store', 'EmpleadoController@store')->name('empleado.store');
 
 Route::delete('/empleado/{empleado}', 'EmpleadoController@destroy')->name('empleado.destroy');
+
+
+Route::post('/changeLang', 'HomeController@changeLang')->name('changeLang');
+
+Route::get('/changeLangGet/{locale_id}', 'HomeController@changeLangGet')->name('changeLangGet');
