@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class EmpleadoController extends Controller
 {
+    public function __construct(){
+        //$this->middleware('editDelete.admin')->except('index','create', 'store');
+        $this->middleware('editDelete.admin')->only('create', 'store');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +22,6 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::orderBy('id', 'DESC')->get();
-
-        //dd($empleados);
 
         return view('Empleado.index',compact('empleados'));
 

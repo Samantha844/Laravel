@@ -40,11 +40,34 @@
                                         <td>{{ $empleado->apellido_paterno . " " . $empleado->apellido_materno }}</td>
                                         <td>{{ $empleado->correo }}</td>
                                         <td>
-                                            <form action="{{route('empleado.destroy', $empleado->id)}}" method="post">
-                                                {{csrf_field()}}
-                                                <input name="_method" type="hidden" value="delete">
-                                                <button class="button btn-danger" type="submit">Eliminar</button>
-                                            </form>
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$empleado->id}}">Eliminar</button>
+                                            <!-- Modal Confirm Delete-->
+                                            <div class="modal fade" id="modal-delete-{{$empleado->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <form action="{{route('empleado.destroy', $empleado->id)}}" method="post">
+                                                        <input name="_method" type="hidden" value="DELETE">
+                                                        {{csrf_field()}}
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Eliminar Registro</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ¿ Desea eliminar al registro {{$empleado->nombre}} ?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- Final Modal-->
+
                                             <a class="btn btn-primary btn-xs" href="{{route('empleado.edit', $empleado->id)}}" >Editar</a>
                                         </td>
                                     </tr>

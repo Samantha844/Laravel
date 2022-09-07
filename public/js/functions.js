@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('.change_lang_menu').click(function () {
         var newLocale = $(this).data('locale_id');
 
-        /*var URL_REQUEST = 'http://curso-laravel-agosto.com/changeLangGET/'+ newLocale;
+        var URL_REQUEST = 'http://curso-laravel-agosto.com/changeLangGET/'+ newLocale;
         $.ajax({
             url: URL_REQUEST,
             method: 'GET',
@@ -18,9 +18,8 @@ $(document).ready(function () {
             beforeSend: function() {
             }
         });
-*/
 
-        var URL_REQUEST = 'http://curso-laravel-agosto.com/changeLang';
+        /*var URL_REQUEST = 'http://curso-laravel-agosto.com/changeLang';
         $.ajax({
             url: URL_REQUEST,
             method: 'POST',
@@ -35,6 +34,6 @@ $(document).ready(function () {
             },
             beforeSend: function() {
             }
-        });
+        });*/
     });
 });
