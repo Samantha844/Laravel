@@ -49,7 +49,7 @@ class EmpleadoController extends Controller
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
             'correo' => 'required|email', //Formato correo
-            'fecha-nacimiento' => '',//Solo acepte formato fecha
+            'fecha_nacimiento' => '',//Solo acepte formato fecha
             'direccion' => '',
             'genero' => 'required', //Solo acepte masculino/femenino
             'telefono' => 'required',
@@ -76,7 +76,7 @@ class EmpleadoController extends Controller
             'apellido_paterno' => $request->get("apellido_paterno"),
             'apellido_materno' => $request->get("apellido_materno"),
             'correo' => $request->get("correo"),
-            'fecha-nacimiento' => $request->get("fecha_nacimiento"),
+            'fecha_nacimiento' => $request->get("fecha_nacimiento"),
             'direccion' => $request->get("direccion"),
             'genero' => $request->get("genero"),
             'telefono' => $request->get("telefono"),
@@ -107,9 +107,10 @@ class EmpleadoController extends Controller
      * @param  \App\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $empleado)
+    public function edit($id)
     {
-        //
+        $empleado = Empleado::find($id);
+        return view('Empleado.edit',compact('empleado'));
     }
 
     /**
@@ -119,9 +120,20 @@ class EmpleadoController extends Controller
      * @param  \App\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['nombre' => 'required|max:10',
+            'apellido_paterno' => 'required',
+            'apellido_materno' => 'required',
+            'correo' => 'required|email', //Formato correo
+            'fecha_nacimiento' => '',//Solo acepte formato fecha
+            'direccion' => '',
+            'genero' => 'required', //Solo acepte masculino/femenino
+            'telefono' => 'required'
+        ]);
+        Empleado::find($id)->update($request->all());
+
+        return redirect()->route('empleado.index')->with('success','Registro creado exitosamente.');
     }
 
     /**

@@ -24,6 +24,9 @@ Route::get('/empleado/index', 'EmpleadoController@index')->name('empleado.index'
 Route::get('/empleado/create', 'EmpleadoController@create')->name('empleado.create');
 Route::post('/empleado/store', 'EmpleadoController@store')->name('empleado.store');
 
+Route::get('empleado/{empleado}/edit','EmpleadoController@edit')->name('empleado.edit');
+Route::put('empleado/{emppleado}','EmpleadoController@update')->name('empleado.update');
+
 Route::delete('/empleado/{empleado}', 'EmpleadoController@destroy')->name('empleado.destroy');
 
 

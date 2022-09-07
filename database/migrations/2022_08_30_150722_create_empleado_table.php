@@ -19,7 +19,7 @@ class CreateEmpleadoTable extends Migration
             $table->string('apellido_paterno', '30');
             $table->string('apellido_materno', '30');;
             $table->string('correo',50);
-            $table->date('fecha-nacimiento')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
             $table->string('direccion',100)->nullable();
             $table->enum('genero',['masculino','femenino']);
             $table->char('telefono', 15);

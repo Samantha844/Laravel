@@ -15,6 +15,12 @@
                     @endif
 
                     {{trans('app.home.logged_in')}}
+
+                    <div>
+                        <a href="{{route('empleado.index')}}" class="btn btn-info" > {{trans('app.home.go_to_employes')}}</a>
+                    </div>
+
+
                 </div>
             </div>
         </div>

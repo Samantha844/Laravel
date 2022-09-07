@@ -45,6 +45,7 @@
                                                 <input name="_method" type="hidden" value="delete">
                                                 <button class="button btn-danger" type="submit">Eliminar</button>
                                             </form>
+                                            <a class="btn btn-primary btn-xs" href="{{route('empleado.edit', $empleado->id)}}" >Editar</a>
                                         </td>
                                     </tr>
                                     @endforeach
