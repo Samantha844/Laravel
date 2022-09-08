@@ -3,13 +3,13 @@ $(document).ready(function () {
     $('.change_lang_menu').click(function () {
         var newLocale = $(this).data('locale_id');
 
-        var URL_REQUEST = 'http://curso-laravel-agosto.com/changeLangGET/'+ newLocale;
+        var URL_REQUEST = 'http://cursoLaravelAgosto.com/changeLangGET/'+ newLocale;
         $.ajax({
             url: URL_REQUEST,
             method: 'GET',
             dataType: 'json',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            done: function (data) {
+            success: function (data) {
                 location.reload();
             },
             error: function (data) {

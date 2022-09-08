@@ -32,4 +32,4 @@ Route::delete('/empleado/{empleado}', 'EmpleadoController@destroy')->name('emple
 
 Route::post('/changeLang', 'HomeController@changeLang')->name('changeLang');
 
-Route::get('/changeLangGet/{locale_id}', 'HomeController@changeLangGet')->name('changeLangGet');
+Route::get('/changeLangGET/{locale_id}', 'HomeController@changeLangGet')->name('changeLangGET');

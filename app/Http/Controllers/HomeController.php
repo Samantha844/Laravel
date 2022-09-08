@@ -45,7 +45,7 @@ class HomeController extends Controller
     }
 
     public function changeLangGet($newLocale){
-
+//dd($newLocale);
         Session::put('applocale', $newLocale);
         \App::setLocale($newLocale);
         //dd($newLocale);
