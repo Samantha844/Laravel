@@ -6,6 +6,7 @@ use App\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client as HttpClient;
 
 class EmpleadoController extends Controller
 {
@@ -96,12 +97,17 @@ class EmpleadoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Empleado  $empleado
+     * @param  \App\Empleado  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Empleado $empleado)
+    public function show($id)
     {
-        //
+        $empleado = Empleado::find($id);
+        $estadosWS = $this->wsEstados();
+        $estadosList = ((array)$estadosWS->data)['lst_estado_proveedor'];
+        //dd(((array)$estadosWS->data)['lst_estado_proveedor']);
+        //dd($empleado->datosContacto);
+        return view('Empleado.show',compact('empleado', 'estadosList'));
     }
 
     /**
@@ -149,5 +155,14 @@ class EmpleadoController extends Controller
     {
         Empleado::find($idEmpleado)->delete();
         return redirect()->route('empleado.index')->with('success' , 'Registro eliminado existosamente.');
+    }
+
+    private function wsEstados(){
+
+        // Create a client with a base URI
+        $client = new HttpClient(['base_uri' => 'https://beta-bitoo-back.azurewebsites.net/api/']);
+        $response = $client->request('POST', 'proveedor/obtener/lista_estados');
+
+        return json_decode($response->getBody());
     }
 }

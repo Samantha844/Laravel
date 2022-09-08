@@ -40,6 +40,7 @@
                                         <td>{{ $empleado->apellido_paterno . " " . $empleado->apellido_materno }}</td>
                                         <td>{{ $empleado->correo }}</td>
                                         <td>
+                                            <a class="btn btn-primary btn-xs" href="{{route('empleado.show', $empleado->id)}}" ><span class="glyphicon glyphicon-eye-open"></span></a>
                                             <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$empleado->id}}">Eliminar</button>
                                             <!-- Modal Confirm Delete-->
                                             <div class="modal fade" id="modal-delete-{{$empleado->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

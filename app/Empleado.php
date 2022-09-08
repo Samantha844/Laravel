@@ -19,4 +19,9 @@ class Empleado extends Model
         'telefono',
         'codigo_empleado'
     ];
+
+    public function datosContacto()
+    {
+        return $this->hasMany('App\DatoContacto','empleado_id','id');
+    }
 }
