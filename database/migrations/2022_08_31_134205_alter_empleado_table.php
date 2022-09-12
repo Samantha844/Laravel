@@ -6,10 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class AlterEmpleadoTable extends Migration
 {
-    public function __construct()
+    /*public function __construct()
     {
         DB::getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
-    }
+    }/*
+
     /**
      * Run the migrations.
      *
@@ -18,14 +19,18 @@ class AlterEmpleadoTable extends Migration
     public function up()
     {
         Schema::table('empleado', function (Blueprint $table) {
-            //cambiar telefono a string
-            $table->string('telefono',20)->change();
-            //Cambiar tamaño nombre a 60
-            $table->string('nombre',60)->change();
-            //Permitir null en apellido materno
-            $table->string('apellido_materno',30)->nullable()->change();
-            //Agregamos columna ciudad
-            $table->string('ciudad',50)->after('direccion');
+            /*
+                //cambiar telefono a string
+                $table->string('telefono',20)->change();
+                //Cambiar tamaño nombre a 60
+                $table->string('nombre',60)->change();
+                //Permitir null en apellido materno
+                $table->string('apellido_materno',30)->nullable()->change();
+                //Agregamos columna ciudad
+                $table->string('ciudad',50)->after('direccion');
+            */
+            $table->decimal('salario',8,2)->after('telefono');
+            $table->char('tipo_moneda')->after('salario');
         });
     }
 
@@ -37,14 +42,19 @@ class AlterEmpleadoTable extends Migration
     public function down()
     {
         Schema::table('empleado', function (Blueprint $table) {
-            //cambiar telefono a char
-            $table->string('telefono',15)->change();
-            //Cambiar tamaño nombre a 50
-            $table->string('nombre',50)->change();
-            //Quitamos nullable en apellido materno
-            $table->string('apellido_materno',30)->nullable($value = false)->change();
-            //Eliminamos columna ciudad
-            $table->dropColumn('ciudad');
+            /*
+                //cambiar telefono a char
+                $table->string('telefono',15)->change();
+                //Cambiar tamaño nombre a 50
+                $table->string('nombre',50)->change();
+                //Quitamos nullable en apellido materno
+                $table->string('apellido_materno',30)->nullable($value = false)->change();
+                //Eliminamos columna ciudad
+                $table->dropColumn('ciudad');
+            */
+
+            $table->dropColumn('salario');
+            $table->dropColumn('tipo_moneda');
         });
     }
 }

@@ -5,6 +5,15 @@ return [
         'name' => 'Nombre',
         'lastname_1'=>'Apellido Paterno',
         'lastname_2'=>'Apellido Materno',
-        'prueba_parametro' => 'Dato de prueba: :datoprueba'
+        'birthdate' => 'Fecha Nacimiento',
+        'email' => 'Correo',
+        'telephone' => 'Telefono',
+        'address' => 'Direccion',
+        'code' => 'Codigo Empleado',
+        'gender' => 'Genero',
+        'male' => 'Hombre',
+        'female' => 'Mujer',
+        'salary' => 'Salario',
+        'currency' => 'Moneda'
     ]
 ];

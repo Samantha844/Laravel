@@ -40,11 +40,10 @@
                                         <td>{{ $empleado->apellido_paterno . " " . $empleado->apellido_materno }}</td>
                                         <td>{{ $empleado->correo }}</td>
                                         <td>
-                                            <form action="{{route('empleado.destroy', $empleado->id)}}" method="post">
-                                                {{csrf_field()}}
-                                                <input name="_method" type="hidden" value="delete">
-                                                <button class="button btn-danger" type="submit">Eliminar</button>
-                                            </form>
+                                        <a class="btn btn-primary btn-xs" href="{{route('empleado.show', $empleado->id)}}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                                            <a class="btn-sm btn-warning" href="{{route('empleado.edit',$empleado->id)}}">Editar</a>
+                                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$empleado->id}}">Eliminar</button>
+                                            @include('Empleado.modalEliminar')
                                         </td>
                                     </tr>
                                     @endforeach
