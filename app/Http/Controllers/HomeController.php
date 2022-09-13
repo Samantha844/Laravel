@@ -30,21 +30,26 @@ class HomeController extends Controller
 
     public function changeLang(Request $request){
 
+        $session_old = Session::all();
         Session::put('applocale', $request->get('newLocale'));
+        $session_new = Session::all();
+        //dd($session_old, $session_new);
         //dd($request->get('newLocale'), 'TEST POST');
+
         $locale_1 = \App::getLocale();;
         \App::setLocale($request->get('newLocale'));
-
         $locale_2 = \App::getLocale();
 
-        return json_encode(['success' => true, 'session1' => $locale_1, 'session_2' => $locale_2]);
+        return json_encode(['success' => true, 'locale_1' => $locale_1, 'locale_2' => $locale_2]);
 
     }
 
     public function changeLangGet($newLocale){
-
-        dd($newLocale);
-        return $newLocale;
+//dd($newLocale);
+        Session::put('applocale', $newLocale);
+        \App::setLocale($newLocale);
+        //dd($newLocale);
+        return json_encode(['success' => true]);
 
     }
 }

@@ -9,6 +9,7 @@ use GuzzleHttp\Client as HttpClient;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client as HttpClient;
 
 class EmpleadoController extends Controller
 {   
@@ -24,8 +25,6 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::orderBy('id', 'DESC')->get();
-
-        //dd($empleados);
 
         return view('Empleado.index',compact('empleados'));
 
@@ -199,6 +198,15 @@ class EmpleadoController extends Controller
     public function wsEstados(){
         $client = new HttpClient(['base_uri' => 'https://beta-bitoo-back.azurewebsites.net/api/','verify' => false]);
         $response = $client->request('POST','proveedor/obtener/lista_estados');
+        return json_decode($response->getBody());
+    }
+
+    private function wsEstados(){
+
+        // Create a client with a base URI
+        $client = new HttpClient(['base_uri' => 'https://beta-bitoo-back.azurewebsites.net/api/']);
+        $response = $client->request('POST', 'proveedor/obtener/lista_estados');
+
         return json_decode($response->getBody());
     }
 }

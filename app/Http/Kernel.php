@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'editDeleteInsert.admin' => \App\Http\Middleware\EditDeleteInsertByEmail::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'editDelete.admin' =>\App\Http\Middleware\EditDeleteByEmail::class,
     ];
 }

@@ -2,6 +2,7 @@
 return [
 
     'form_create'=>[
+        'employe_code' => 'Employe code',
         'name' => 'Name',
         'lastname_1'=>'Lastname',
         'lastname_2'=>'Lastname 2',

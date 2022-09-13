@@ -62,8 +62,6 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label> {{ trans('forms.form_create.gender') }} </label>
-                                        <label> {{ trans('validation.required',['attribute' => 'prueba']) }} </label>
-                                        <label> {{ trans('forms.form_create.prueba_parametro',['datoprueba' => 'HOLA']) }} </label>
 
                                         <div class="radio">
                                             <label class="form-check-label" for="campo_genero_h">{{ trans('forms.form_create.male') }}</label>
